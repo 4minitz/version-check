@@ -1,0 +1,16 @@
+{
+  "name": "4minitz-update",
+  "version": "1.0.0",
+  "description": "4Minitz Update REST Service",
+  "main": "src/index.js",
+  "author": "4Minitz Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "github": "^9.2.0",
+    "mongodb": "^2.2.27",
+    "restify": "^4.3.0"
+  }
+}
