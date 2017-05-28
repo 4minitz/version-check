@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "github": "^9.2.0",
-    "mongodb": "^2.2.27",
-    "restify": "^4.3.0"
+    "mongoose": "^4.10.3",
+    "restify": "^4.3.0",
+    "semver": "^5.3.0"
   }
 }
