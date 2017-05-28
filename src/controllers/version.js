@@ -4,7 +4,7 @@ const versionService = require('../services/version');
 const version = {
     currentVersion(req, res) {
         const {slaveUID, slaveVersion} = req.params,
-            remoteAddress = req.connection.remoteAddress,
+            remoteAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress,
             tag = versionService.getCurrent();
 
         const respondWithTag = () => {
