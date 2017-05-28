@@ -1,7 +1,7 @@
 {
-  "name": "4minitz-update",
+  "name": "version-check",
   "version": "1.0.0",
-  "description": "4Minitz Update REST Service",
+  "description": "4Minitz version check REST Service",
   "main": "src/index.js",
   "author": "4Minitz Team",
   "license": "MIT",
