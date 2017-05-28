@@ -12,13 +12,12 @@ const version = {
         };
 
         slaveService.updateSlave(slaveUID, slaveVersion, remoteAddress)
-            .then(respondWithTag)
             .catch(error => {
                 console.error(`An error occurred when updating ${slaveUID}: ${error}`);
-
-                // send back current version regardless
-                respondWithTag();
             });
+
+        // send back current version regardless of success or failure of db entry
+        respondWithTag();
     }
 }
 
