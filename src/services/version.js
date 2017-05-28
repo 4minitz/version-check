@@ -11,6 +11,7 @@ let currentVersion = '0.0.0';
 // todo: use travis to filter version that actually work, i.e. have a green build?
 
 function updateVersionList() {
+    let lastVersion = currentVersion;
     const gitTags = github.repos.getTags({owner: OWNER, repo: REPO})
         .then(response => {
             versionList = response.data
@@ -26,6 +27,9 @@ function updateVersionList() {
                 .sort(semver.rcompare);
 
             currentVersion = versionList[0] || '0.0.0';
+            if (lastVersion !== currentVersion) {
+                console.log("Current version: "+currentVersion);
+            }
         })
         .catch(console.error);
 
@@ -45,6 +49,6 @@ const version = {
     getCurrent() {
         return currentVersion;
     }
-}
+};
 
 module.exports = version;

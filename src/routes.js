@@ -6,6 +6,6 @@ const routes = {
             versionController.currentVersion(req, res);
         }
     }
-}
+};
 
 module.exports = routes;
