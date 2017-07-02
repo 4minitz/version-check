@@ -21,7 +21,9 @@ const version = {
                     remoteNames[0] = '-unknown-';
                 }
                 const remoteName = remoteNames[0];
-                console.log(`Request from: ${slaveUID}/${remoteAddress}@${slaveVersion} - ${remoteName}`);
+                const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+                const timestamp = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-5);
+                console.log(`${timestamp}: ${slaveUID}/${remoteAddress}@${slaveVersion} - ${remoteName}`);
                 slaveService.updateSlave(slaveUID, slaveVersion, remoteAddress, remoteName)
                     .catch(error => {
                         console.error(`An error occurred when updating ${slaveUID}: ${error}`);
