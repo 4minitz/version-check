@@ -1,5 +1,6 @@
 const slaveService = require('../services/slave');
 const versionService = require('../services/version');
+const dns = require('dns');
 
 const version = {
     currentVersion(req, res) {
@@ -11,10 +12,20 @@ const version = {
             res.json(200, {tag});
         };
 
-        console.log("Request from: ",slaveUID, slaveVersion, remoteAddress);
-        slaveService.updateSlave(slaveUID, slaveVersion, remoteAddress)
-            .catch(error => {
-                console.error(`An error occurred when updating ${slaveUID}: ${error}`);
+        dns.reverse(remoteAddress, function (err, remoteNames) {
+                if (err) {
+                    console.log(`dns.reverse Error: ${err}`);
+                }
+                if (!remoteNames || !remoteNames[0]) {
+                    remoteNames = [];
+                    remoteNames[0] = '-unknown-';
+                }
+                const remoteName = remoteNames[0];
+                console.log(`Request from: ${slaveUID}/${remoteAddress}@${slaveVersion} - ${remoteName}`);
+                slaveService.updateSlave(slaveUID, slaveVersion, remoteAddress, remoteName)
+                    .catch(error => {
+                        console.error(`An error occurred when updating ${slaveUID}: ${error}`);
+                    });
             });
 
         // send back current version regardless of success or failure of db entry
