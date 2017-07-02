@@ -1,6 +1,11 @@
-# 4minitz update check
+# 4Minitz update check
 
 A small rest service that returns the current stable 4minitz version.
+
+It...
+ * queries the current stable master version from github via github.repos.getTags().
+ * offers a simple rest route that will deliver this version to clients
+
 
 ## Installation
 
@@ -20,7 +25,8 @@ to connect to the end2end mongodb server or set the `MONGO_URL` env variable to 
 ## Usage
 You may manually check the service like so:
 
-    $ curl localhost:8080/updatecheck/MyClientsUniqueID/0.10.0
+    $ curl localhost:8080/updatecheck/${MYCLIENTUID}/${MYVERSION}
+    $ curl localhost:8080/updatecheck/MyClientsUniqueID/v0.10.0
 
 This should return the current officially released master version like so:
  
