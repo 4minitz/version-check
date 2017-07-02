@@ -1,5 +1,4 @@
 const db = require('../db');
-const nslookup = require('nslookup');
 
 const SlaveSchema = new db.Schema({
     timeStamp: Date,
