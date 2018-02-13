@@ -24,7 +24,6 @@ updateMessageList();
 
 const message = {
     getForVersion(versionTag) {
-        console.log("IN: ", versionTag);
         let filteredMsgs = {};
 
         let myKeys = Object.keys(messageList);
