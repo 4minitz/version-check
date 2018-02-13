@@ -2,16 +2,9 @@ const mongoose = require('mongoose');
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:3101/meteor';
 
 const reconnectIntervalInMs = 1500,
-    socketOptions = {
-        keepAlive: 120
-    },
     options = {
-        server: {
-            socketOptions,
-        },
-        replset: {
-            socketOptions
-        }
+        useMongoClient: true,
+        keepAlive: 120
     };
 
 const db = mongoose.connection;
