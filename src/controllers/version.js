@@ -1,5 +1,6 @@
 const slaveService = require('../services/slave');
 const versionService = require('../services/version');
+const messageService = require('../services/message');
 const dns = require('dns');
 const http = require('http');
 
@@ -20,10 +21,10 @@ const version = {
         const {slaveUID, slaveVersion} = req.params,
             remoteAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress,
             tag = versionService.getCurrent();
-
+            message = messageService.getForVersion(tag);
 
         const respondWithTag = () => {
-            res.json(200, {tag});
+            res.json(200, {tag, message});
         };
 
         dns.reverse(remoteAddress, function (err, remoteNames) {
