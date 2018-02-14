@@ -3,12 +3,14 @@ const fs = require("fs");
 
 let messageList = {};
 
-function updateMessageList() {
+function updateMessageList(dumpContent) {
     try {
         let content = fs.readFileSync("versionmessage.json");
         if (content) {
                 messageList = JSON.parse(content);
-                console.log(messageList);
+                if (dumpContent) {
+                    console.log(messageList);
+                }
         }
     } catch (e) {
         console.log("versionmessage.json Error: ", e);
@@ -19,7 +21,7 @@ function updateMessageList() {
     // update table every hour
     setTimeout(updateMessageList, 1000 * 60 * 60);
 }
-updateMessageList();
+updateMessageList(true);
 
 
 const message = {
